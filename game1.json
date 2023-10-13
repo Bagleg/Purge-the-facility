@@ -1,0 +1,52 @@
+{
+  "player": {
+    "name": "John Doe",
+    "location": "Kitchen"
+  },
+  "room" : [
+    {"name" : "Kitchen", "description": "A description for the kitchen",
+      "exits": {
+        "west": "Dining Room",
+        "south": "Garden",
+        "east" : "Pantry"
+      }},
+    {"name" : "Dining Room", "description": "A description for the dining room",
+      "exits": {
+        "east" : "Kitchen"
+      }},
+    {"name" : "Garden", "description": "A description for the garden",
+      "exits": {
+        "north": "Kitchen"
+      }},
+    {"name" : "Pantry", "description": "a description for the pantry",
+      "exits": {
+        "west": "Kitchen"
+      }}
+
+  ],
+
+  "monster": [
+    {
+      "temperament": "Aggressive",
+      "hp": 120,
+      "atk": 10,
+      "room": "Kitchen",
+      "def": 15
+    },
+    {
+      "temperament": "Aggressive",
+      "hp": 50,
+      "atk": 25,
+      "room": "Dining Room",
+      "def": 5
+    },
+    {
+      "temperament": "Aggressive",
+      "hp": 100,
+      "atk": 15,
+      "room": "Garden",
+      "def": 10
+    }
+  ]
+}
+
