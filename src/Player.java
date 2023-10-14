@@ -52,6 +52,7 @@ public class Player extends Creature{
         Random random = new Random();
         int atkdmg = random.nextInt(this.getAtk());
         monster.takeDamage(atkdmg);
+        System.out.println("You have struck the monster for " + atkdmg + "!");
         if(monster.getHealth() <= 0){
            monster.die();
         }
@@ -59,16 +60,20 @@ public class Player extends Creature{
 
     public void battle(Monster monster){
         while(this.getHealth() > 0 && monster.getHealth() > 0){
+            System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
             this.attack(monster);
             if(monster.getHealth() > 0) {
                 monster.attack(this);
+                System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
+
+            } else{
+                System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
             }
             System.out.println("Player's health: " + this.getHealth() + "\n" + "Monster's health: " + monster.getHealth());
-
+            System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
         }
         if(this.getHealth() <= 0){
             this.die();
-//            prolly some more stuff
         } else if (monster.getHealth() <= 0){
             this.slay();
         }

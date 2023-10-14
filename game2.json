@@ -1,0 +1,114 @@
+{
+  "player": {
+    "name": "Bob",
+    "location": "Entrance Hall"
+  },
+  "room": [
+    {
+      "name": "Entrance Hall",
+      "description": "A grand entrance with a chandelier. You notice a faint glow coming from the Living Room to the north.",
+      "exits": {
+        "north": "Living Room",
+        "east": "Dining Room",
+        "west": "Study"
+      }
+    },
+    {
+      "name": "Living Room",
+      "description": "A spacious living room with comfortable sofas. You see a glimmer of something shiny on a table.",
+      "exits": {
+        "south": "Entrance Hall"
+      }
+    },
+    {
+      "name": "Dining Room",
+      "description": "An elegant dining room with a long table. You catch a whiff of a magical aroma from the Kitchen to the south.",
+      "exits": {
+        "west": "Entrance Hall",
+        "south": "Kitchen"
+      }
+    },
+    {
+      "name": "Kitchen",
+      "description": "A well-equipped kitchen with modern appliances. You spot a bottle labeled 'Health Potion' on the counter.",
+      "exits": {
+        "north": "Dining Room"
+      }
+    },
+    {
+      "name": "Study",
+      "description": "A quiet study with bookshelves and a desk. A map lies on the desk, and you feel a magical presence from the Library to the west.",
+      "exits": {
+        "east": "Entrance Hall",
+        "west": "Library"
+      }
+    },
+    {
+      "name": "Library",
+      "description": "A cozy library with leather chairs and shelves of books. A magical wand is displayed prominently on a shelf.",
+      "exits": {
+        "east": "Study"
+      }
+    },
+    {
+      "name": "Garden",
+      "description": "A beautiful garden with flowers and a fountain. You sense a hidden treasure somewhere.",
+      "exits": {
+        "north": "Living Room"
+      }
+    }
+  ],
+  "monster": [
+    {
+      "temperament": "Aggressive",
+      "hp": 120,
+      "atk": 10,
+      "def": 15,
+      "room": "Living Room"
+    },
+    {
+      "temperament": "Aggressive",
+      "hp": 50,
+      "atk": 25,
+      "def": 5,
+      "room": "Dining Room"
+    },
+    {
+      "temperament": "Aggressive",
+      "hp": 100,
+      "atk": 15,
+      "def": 10,
+      "room": "Garden"
+    }
+  ],
+  "item": [
+    {
+      "name": "Sword of Power",
+      "type": "Weapon",
+      "description": "A mighty sword with magical properties.",
+      "attackDamage": 20,
+      "location": "Living Room"
+    },
+    {
+      "name": "Magic Wand",
+      "type": "Weapon",
+      "description": "A wand imbued with arcane energies.",
+      "attackDamage": 15,
+      "location": "Library"
+    },
+    {
+      "name": "Health Potion",
+      "type": "Other",
+      "description": "A potion that restores health.",
+      "attackDamage": 0,
+      "location": "Kitchen"
+    },
+    {
+      "name": "Map",
+      "type": "Other",
+      "description": "A detailed map of the surrounding areas.",
+      "attackDamage": 0,
+      "location": "Study"
+    }
+  ]
+}

@@ -25,8 +25,7 @@ public class Monster extends Creature{
             } else if(canHuntPlayer(game_map, player)){
                 this.setLocation(player.getLocation());
                 System.out.println("Monster has moved to " + this.getLocation().getName());
-            } else {
-                System.out.println("The monster is sitting in his room angrily");
+                this.battle(player);
             }
         }
     }
@@ -34,17 +33,24 @@ public class Monster extends Creature{
         Random random = new Random();
         int atkdmg = random.nextInt(this.getAtk());
         player.setHealth(atkdmg);
+        System.out.println("The monster has struck you for " + atkdmg + "!");
         if(player.getHealth() <= 0){
             player.die();
         }
     }
     public void battle(Player player){
         while(this.getHealth() > 0 && player.getHealth() > 0){
+            System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
             this.attack(player);
             if(player.vitalityCheck()){
                 player.attack(this);
+                System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
+            } else {
+                System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
             }
             System.out.println("Player's health: " +player.getHealth() + "\n" + "Monster's health: " + this.getHealth());
+            System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
+
         }
         if(!this.vitalityCheck()){
             player.slay();

@@ -10,13 +10,15 @@ public class Main {
 
         Player player = new Player("Player 1", 100, 15, 100);
         ArrayList<Monster> monsters = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<>();
         GameMap game_map = new GameMap();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            Map<?, ?> data = objectMapper.readValue(new File("PurgeTheFacility/game1.json"), Map.class);
+            Map<?, ?> data = objectMapper.readValue(new File("PurgeTheFacility/game2.json"), Map.class);
             Map<?, ?> playerdata = (Map<?, ?>) data.get("player");
             List<?> monsterdata = (List<?>) data.get("monster");
             List<?> roomdata = (List<?>) data.get("room");
+            List<?> itemdata = (List <?>) data.get("item");
             for(Object room: roomdata) {
                 Map<?, ?> one_room_data = (Map<?, ?>) room;
                 String room_name = (String) one_room_data.get("name");
@@ -67,18 +69,28 @@ public class Main {
                 monsters.add(m);
             }
 
+            for(Object item : itemdata){
+                Map<?,?> one_item = (Map<?, ?>) item;
+                String name = (String) one_item.get("name");
+                String type = (String) one_item.get("type");
+                String desc = (String) one_item.get("description");
+                int atkDmg = (Integer) one_item.get("attackDamage");
+                Room location = game_map.getRoomByName((String) one_item.get("location"));
+                Item i = new Item(name, type, desc, atkDmg, location);
+                location.addItem(i);
+                items.add(i);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        Action.move(player, game_map, "east");
-
+//        System.out.println(items);
 //        check condition
         while(player.getHealth() > 0 && !player.checkWinCondition(monsters)){
             player.act(game_map);
             for(Monster monster : monsters){
-                if(monster.vitalityCheck()) {
+                if(monster.vitalityCheck() && player.vitalityCheck()) {
                     monster.act(player, game_map);
                 }
             }

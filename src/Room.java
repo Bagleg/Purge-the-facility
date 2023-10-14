@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class Room {
     private String name;
-
     private String description = "";
     private List<Item> items = new ArrayList<Item>();
 
@@ -16,19 +15,18 @@ public class Room {
     public String getName() {
         return name;
     }
-
-    private boolean hasMonster = false;
-
     public String getDescription() {
         return description;
     }
 
     public void addItem(Item item) {
         items.add(item);
+        item.setLocation(this);
     }
 
     public void removeItem(Item item) {
         items.remove(item);
+        item.setLocation(null);
     }
 
     public List<Item> getItems() {
