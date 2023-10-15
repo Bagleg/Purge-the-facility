@@ -14,8 +14,15 @@ public class Item {
     public String getName() {
         return name;
     }
+    public String getType(){
+        return type;
+    }
+
     public void setLocation(Room room){
-        this.setLocation(room);
+        this.location = room;
+    }
+    public int getAtkDmg(){
+        return this.atkDmg;
     }
     public Room getLocation(){
         return this.location;

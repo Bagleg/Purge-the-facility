@@ -17,7 +17,8 @@
       "name": "Living Room",
       "description": "A spacious living room with comfortable sofas. You see a glimmer of something shiny on a table.",
       "exits": {
-        "south": "Entrance Hall"
+        "south": "Entrance Hall",
+        "north": "Garden"
       }
     },
     {
@@ -54,7 +55,7 @@
       "name": "Garden",
       "description": "A beautiful garden with flowers and a fountain. You sense a hidden treasure somewhere.",
       "exits": {
-        "north": "Living Room"
+        "south": "Living Room"
       }
     }
   ],
@@ -86,19 +87,19 @@
       "name": "Sword of Power",
       "type": "Weapon",
       "description": "A mighty sword with magical properties.",
-      "attackDamage": 20,
+      "attackDamage": 30,
       "location": "Living Room"
     },
     {
       "name": "Magic Wand",
       "type": "Weapon",
       "description": "A wand imbued with arcane energies.",
-      "attackDamage": 15,
+      "attackDamage": 30,
       "location": "Library"
     },
     {
       "name": "Health Potion",
-      "type": "Other",
+      "type": "Potion",
       "description": "A potion that restores health.",
       "attackDamage": 0,
       "location": "Kitchen"

@@ -78,15 +78,16 @@ public class Main {
                 Room location = game_map.getRoomByName((String) one_item.get("location"));
                 Item i = new Item(name, type, desc, atkDmg, location);
                 location.addItem(i);
+//                System.out.println("item " + i.getName() + " in the " + location.getName());
                 items.add(i);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-//        System.out.println(items);
-//        check condition
+        System.out.println(player.getLocation().getDescription());
+//        System.out.println(player.getHealth());
         while(player.getHealth() > 0 && !player.checkWinCondition(monsters)){
             player.act(game_map);
             for(Monster monster : monsters){

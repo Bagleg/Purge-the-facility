@@ -32,7 +32,7 @@ public class Monster extends Creature{
     public void attack(Player player){
         Random random = new Random();
         int atkdmg = random.nextInt(this.getAtk());
-        player.setHealth(atkdmg);
+        player.takeDamage(atkdmg);
         System.out.println("The monster has struck you for " + atkdmg + "!");
         if(player.getHealth() <= 0){
             player.die();
