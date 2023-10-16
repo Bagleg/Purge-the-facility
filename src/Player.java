@@ -32,6 +32,12 @@ public class Player extends Creature{
             return false;
         }
     }
+
+    public int idleHeal(){
+        Random random = new Random();
+        return random.nextInt(21);
+    }
+
 public void pickUp(Room room) {
     List<Item> items = room.getItems();
     if (items != null) {
@@ -40,7 +46,7 @@ public void pickUp(Room room) {
             Item item = iterator.next();
             this.addItem(item);
             System.out.println("You have found a " + item.getName() + "!");
-            iterator.remove();  // Remove the item using the iterator
+            iterator.remove();
         }
     } else {
         System.out.println("You spend your time looking, but find no items.");
@@ -62,9 +68,10 @@ public void pickUp(Room room) {
             while(iterator.hasNext()){
                 Item item = iterator.next();
                 if (input.equalsIgnoreCase(item.getName()) && item.getType().equalsIgnoreCase("weapon")) {
-                    this.setAtk(item.getAtkDmg());
+                    this.setAtk(this.getAtk() + item.getAtkDmg());
                     success = true;
                     equipment.add(item);
+                    System.out.println("You have equipped a " + item.getName() + " and have increased your attack power by " + item.getAtkDmg());
                     iterator.remove();
                 }
             }
@@ -73,16 +80,27 @@ public void pickUp(Room room) {
             }
         }
     }
+
+    public void move(GameMap game_map, String direction){
+
+        Room room = game_map.getExit(this.getLocation(), direction);
+
+        if(room != null){
+            this.setLocation(room);
+            System.out.println("You have entered "+ this.getLocation().getName() + "\n" + this.getLocation().getDescription());
+        }
+    }
+
     public void act(GameMap game_map){
         Scanner stdin = new Scanner(System.in);
         boolean acted = false;
-        while(acted == false) {
+        while(!acted) {
             System.out.print("Enter an action: ");
             String input = stdin.nextLine();
             if (input.equalsIgnoreCase("move")) {
                 System.out.print("Please pick a direction: ");
                 String direction = stdin.nextLine();
-                Action.move(this, game_map, direction);
+                this.move(game_map, direction);
                 acted = true;
             } else if (input.equalsIgnoreCase("loot")) {
                 this.pickUp(this.getLocation());
@@ -90,11 +108,23 @@ public void pickUp(Room room) {
             } else if(input.equalsIgnoreCase("equip")){
                 this.equip();
             }else if(input.equalsIgnoreCase("idle")){
-                System.out.println("You waited around for a while...");
+                System.out.println("You waited around for a little while");
+                if(this.getHealth() < 90) {
+                    int heal = this.idleHeal();
+                    int newHealth = this.getHealth() + heal;
+                    if(newHealth > 90){
+                        newHealth = 90;
+                        System.out.println("You don't think that you can feel much better than this");
+                    }
+                    System.out.println("You feel yourself getting a little better...");
+                    this.setHealth(newHealth);
+                    System.out.println("You are now at " + this.getHealth() + " HP!");
+                }
                 acted = true;
             }
         }
     }
+
 
     public void attack(Monster monster){
         Random random = new Random();

@@ -18,6 +18,7 @@ public class Monster extends Creature{
         this.temperament = temperament;
     }
     public void act(Player player, GameMap game_map){
+//        make switch statement when more temperaments are added
         if(this.temperament.equalsIgnoreCase("aggressive")){
             if(player.getLocation() == this.getLocation()){
                 System.out.println("Monster attacks");
