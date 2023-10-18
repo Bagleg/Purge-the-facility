@@ -50,12 +50,13 @@ public class WorldBuilding {
     public static void createMonsters(List<?> monsterdata, GameMap game_map, ArrayList<Monster> monsters){
         for(Object monster : monsterdata){
             Map<?,?> one_monster = (Map <?,?>) monster;
+            String name = (String) one_monster.get("name");
             String temperament = (String) one_monster.get("temperament");
             Room location = game_map.getRoomByName((String) one_monster.get("room"));
             int hp = (Integer) one_monster.get("hp");
             int atk = (Integer) one_monster.get("atk");
             int def = (Integer) one_monster.get("def");
-            Monster m = new Monster(temperament, location, hp, def, atk);
+            Monster m = new Monster(name, temperament, location, hp, def, atk);
             monsters.add(m);
         }
     }

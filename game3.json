@@ -1,0 +1,139 @@
+{
+  "player": {
+    "name": "Bob",
+    "location": "Spaceport"
+  },
+  "room": [
+    {
+      "name": "Spaceport",
+      "description": "A bustling spaceport with ships coming and going. You notice a faint hum of engines from the Launchpad to the north.",
+      "exits": {
+        "north": "Launchpad",
+        "east": "Galactic Lounge",
+        "west": "Research Lab"
+      }
+    },
+    {
+      "name": "Launchpad",
+      "description": "A massive launchpad with towering spaceships. The air is filled with the scent of rocket fuel.",
+      "exits": {
+        "south": "Spaceport",
+        "north": "Stellar Garden"
+      }
+    },
+    {
+      "name": "Galactic Lounge",
+      "description": "A stylish lounge with holographic displays. You catch a glimpse of a floating menu from the Bar to the south.",
+      "exits": {
+        "west": "Spaceport",
+        "south": "Bar"
+      }
+    },
+    {
+      "name": "Bar",
+      "description": "A lively bar with alien patrons. The bartender gestures towards a glowing concoction labeled 'Starlight Elixir'.",
+      "exits": {
+        "north": "Galactic Lounge"
+      }
+    },
+    {
+      "name": "Research Lab",
+      "description": "A high-tech research lab with advanced equipment. You sense a peculiar energy from the Teleportation Chamber to the west.",
+      "exits": {
+        "east": "Spaceport",
+        "west": "Teleportation Chamber"
+      }
+    },
+    {
+      "name": "Teleportation Chamber",
+      "description": "A chamber with swirling energy patterns. A console hints at destinations in distant galaxies.",
+      "exits": {
+        "east": "Research Lab"
+      }
+    },
+    {
+      "name": "Stellar Garden",
+      "description": "A serene garden with floating asteroids and rare celestial flowers. You feel a mysterious presence.",
+      "exits": {
+        "south": "Launchpad"
+      }
+    },
+    {
+      "name": "Nebula Nexus",
+      "description": "A mesmerizing nexus surrounded by colorful nebulas. You hear whispers of cosmic secrets.",
+      "exits": {
+        "north": "Teleportation Chamber"
+      }
+    },
+    {
+      "name": "Interstellar Bridge",
+      "description": "A bridge connecting star systems. The view of distant galaxies is breathtaking.",
+      "exits": {
+        "east": "Nebula Nexus"
+      }
+    },
+    {
+      "name": "Void Observatory",
+      "description": "An observatory at the edge of the universe. The darkness is both beautiful and unsettling.",
+      "exits": {
+        "west": "Interstellar Bridge"
+      }
+    }
+  ],
+  "monster": [
+    {
+      "name": "Zorgon the Star Marauder",
+      "temperament": "Aggressive",
+      "hp": 120,
+      "atk": 10,
+      "def": 15,
+      "room": "Launchpad"
+    },
+    {
+      "name": "Lunar Siren",
+      "temperament": "Aggressive",
+      "hp": 50,
+      "atk": 25,
+      "def": 5,
+      "room": "Bar"
+    },
+    {
+      "name": "Cosmic Behemoth",
+      "temperament": "Aggressive",
+      "hp": 100,
+      "atk": 15,
+      "def": 10,
+      "room": "Stellar Garden"
+    }
+  ],
+  "item": [
+    {
+      "name": "Photon Blade",
+      "type": "Weapon",
+      "description": "A blade that harnesses the power of photons.",
+      "attackDamage": 30,
+      "location": "Galactic Lounge"
+    },
+    {
+      "name": "Quantum Elixir",
+      "type": "Potion",
+      "description": "A potion that bends the laws of space and time to restore health.",
+      "attackDamage": 0,
+      "location": "Nebula Nexus"
+    },
+    {
+      "name": "Star Chart",
+      "type": "Other",
+      "description": "A holographic star chart with unknown constellations.",
+      "attackDamage": 0,
+      "location": "Research Lab"
+    },
+    {
+      "name": "Celestial stone",
+      "type": "Weapon",
+      "description": "It's a pointy rock to bludgeon your enemies with.",
+      "attackDamage": 15,
+      "location": "Void Observatory"
+    }
+  ]
+}

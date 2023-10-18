@@ -33,8 +33,11 @@ public class Main {
         while(player.getHealth() > 0 && !player.checkWinCondition(monsters)){
             player.act(game_map);
             for(Monster monster : monsters){
-                if(monster.vitalityCheck() && player.vitalityCheck()) {
+                if(monster.vitalityCheck() && player.vitalityCheck() && !monster.isStunned()) {
                     monster.act(player, game_map);
+                }
+                if(monster.isStunned()){
+                    monster.stunProgress();
                 }
             }
         }
