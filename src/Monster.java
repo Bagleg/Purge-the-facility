@@ -9,7 +9,6 @@ public class Monster extends Creature{
     private boolean stunned = false;
     private int stunCount = 0;
 
-
     public Monster(String name, String temperament, Room room, int hp, int def, int atk){
         this.setName(name);
         this.temperament = temperament;
@@ -17,10 +16,12 @@ public class Monster extends Creature{
         this.setHealth(hp);
         this.setDef(def);
         this.setAtk(atk);
+        room.addMonster(this);
 
     }
-    public void setTemperament(String temperament){
-        this.temperament = temperament;
+
+    public void stun(){
+        this.stunned = true;
     }
     public void act(Player player, GameMap game_map){
 //        make switch statement when more temperaments are added
@@ -29,7 +30,9 @@ public class Monster extends Creature{
                 System.out.println("Monster attacks");
                 this.battle(player);
             } else if(canHuntPlayer(game_map, player)){
+                this.getLocation().removeMonster(this);
                 this.setLocation(player.getLocation());
+                this.getLocation().addMonster(this);
                 System.out.println(this.getName() + " has moved to " + this.getLocation().getName());
                 this.battle(player);
             }
@@ -65,22 +68,26 @@ public class Monster extends Creature{
             if(player.vitalityCheck()){
                 System.out.print("Please choose an action: ");
                 String action = stdin.nextLine();
-                if(action.equalsIgnoreCase("attack")) {
-                    player.attack(this);
-                } else if(action.equalsIgnoreCase("run")){
-                    int chance = random.nextInt(2) + 1;
-                    switch(chance){
-                        case 1:
-                            System.out.println("You try to drop a smoke bomb, but it bounces on the floor and knocks you down without exploding");
-                            break;
-                        case 2:
-                            System.out.println("You have dropped a smoke bomb, and the monster is stunned");
-                            ran = true;
-                            this.stunned = true;
-                            break;
-                    }
-                } else if(action.equalsIgnoreCase("item")){
-                    // set up health potions and other item types.
+                switch(action){
+                    case "attack":
+                        player.attack(this);
+                        break;
+                    case "run":
+                        int chance = random.nextInt(2) + 1;
+                        switch(chance){
+                            case 1:
+                                System.out.println("You try to drop a smoke bomb, but it bounces on the floor and knocks you down without exploding");
+                                break;
+                            case 2:
+                                System.out.println("You have dropped a smoke bomb, and the monster is stunned");
+                                ran = true;
+                                this.stunned = true;
+                                break;
+                        }
+                        break;
+                    case "item":
+//                        set up health potions
+                        break;
                 }
                 System.out.println("\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n");
             } else {
@@ -92,6 +99,7 @@ public class Monster extends Creature{
         }
         if(!this.vitalityCheck()){
             player.slay();
+            this.getLocation().removeMonster(this);
         }
     }
     public boolean canHuntPlayer(GameMap gameMap, Player player){

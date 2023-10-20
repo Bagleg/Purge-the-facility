@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Creature {
     private String name;
     private int atk;
@@ -47,6 +49,4 @@ public class Creature {
     public boolean vitalityCheck(){
         return isAlive;
     }
-
-
 }

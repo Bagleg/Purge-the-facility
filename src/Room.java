@@ -4,6 +4,7 @@ import java.util.Map;
 
 public class Room {
     private String name;
+    private ArrayList<Monster> monsters = new ArrayList<>();
     private String description = "";
     private List<Item> items = new ArrayList<Item>();
 
@@ -31,5 +32,14 @@ public class Room {
 
     public List<Item> getItems() {
         return items;
+    }
+    public void addMonster(Monster monster){
+        monsters.add(monster);
+    }
+    public void removeMonster(Monster monster){
+        monsters.remove(monster);
+    }
+    public ArrayList<Monster> getMonsters(){
+        return monsters;
     }
 }

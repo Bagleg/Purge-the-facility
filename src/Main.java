@@ -8,7 +8,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
-        Player player = new Player("Player 1", 100, 15, 30);
+        Player player = new Player("Player 1", 100, 15, 300);
         ArrayList<Monster> monsters = new ArrayList<>();
         ArrayList<Item> items = new ArrayList<>();
         GameMap game_map = new GameMap();
@@ -30,13 +30,13 @@ public class Main {
 
         WorldBuilding.introduction(player);
 
-        while(player.getHealth() > 0 && !player.checkWinCondition(monsters)){
+        while(!player.checkWinCondition(monsters) && player.getHealth() > 0){
             player.act(game_map);
-            for(Monster monster : monsters){
-                if(monster.vitalityCheck() && player.vitalityCheck() && !monster.isStunned()) {
+            for (Monster monster : monsters) {
+                if (monster.vitalityCheck() && player.vitalityCheck() && !monster.isStunned()) {
                     monster.act(player, game_map);
                 }
-                if(monster.isStunned()){
+                if (monster.isStunned()) {
                     monster.stunProgress();
                 }
             }
